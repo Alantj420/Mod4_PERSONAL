@@ -1,0 +1,36 @@
+---
+title: "Mod4_DataVizR"
+author: "Alan Thomas Joshy"
+date: "2024-05-14"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#Install and load the tidyverse package
+```{r}
+#install.packages("tidyverse")
+library(tidyverse)
+```
+# Creating the first plot using ggplot
+```{r}
+ggplot(data = mpg) +
+  geom_point(mapping = aes(x = displ, y= hwy))
+```
+
+
+# playing around with different "mappings" of ggplot such as colour, size and gradient
+```{r}
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy, colour = class))
+```
+
+```{r}
+ggplot(data = mpg) +
+  geom_point(mapping = aes(x = displ, y= hwy, colour = class, alpha = fl))
+```
+#R gives us a warning against using alpha for a discrete variable as I have in the above trial plot.
+
+
