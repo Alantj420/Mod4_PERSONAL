@@ -1,5 +1,5 @@
 ---
-title: "Mod4_DataVizR"
+title: "Mod4_Session 1"
 author: "Alan Thomas Joshy"
 date: "2024-05-14"
 output: html_document
@@ -150,6 +150,36 @@ ggplot(data = diamonds) +
 
 #aesthetics like colour and fill on geom_bar:
 ```{r}
+ggplot(data = diamonds) +
+  geom_bar(mapping = aes(x = cut, colour = cut))
+```
+colour gives outline vs fill gives fully coloures bars
 
+
+```{r}
+ggplot(data = diamonds) +
+  geom_bar(mapping = aes(x = cut, fill = clarity))
+```
+
+#Position adjustments:
+Identity
+```{r}
+#position = identity
+ggplot(data = diamonds, mapping = aes(x = cut, fill = clarity)) +
+  geom_bar(aes(colour = clarity), position = "identity")
+
+#position = fill 
+ggplot(data = diamonds, mapping = aes(x = cut, fill = clarity)) +
+  geom_bar(aes(colour = clarity), position = "fill")
+
+#position = dodge
+ggplot(data = diamonds, mapping = aes(x = cut, fill = clarity)) +
+  geom_bar(aes(colour = clarity), position = "dodge")
+```
+
+#jitter position:
+```{r}
+ggplot(data = diamonds) +
+  geom_bar(mapping = aes(x = cut, fill = clarity), position = "jitter")
 ```
 
