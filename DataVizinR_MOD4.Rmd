@@ -14,6 +14,11 @@ knitr::opts_chunk$set(echo = TRUE)
 #install.packages("tidyverse")
 library(tidyverse)
 ```
+#Load Data in
+```{r}
+data(mpg)
+```
+
 # Creating the first plot using ggplot
 ```{r}
 ggplot(data = mpg) +
@@ -21,7 +26,8 @@ ggplot(data = mpg) +
 ```
 
 
-# playing around with different "mappings" of ggplot such as colour, size and gradient
+playing around with different "mappings" of ggplot such as colour, size and gradient
+
 ```{r}
 ggplot(data = mpg) + 
   geom_point(mapping = aes(x = displ, y = hwy, colour = class))
@@ -31,6 +37,55 @@ ggplot(data = mpg) +
 ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y= hwy, colour = class, alpha = fl))
 ```
+
 #R gives us a warning against using alpha for a discrete variable as I have in the above trial plot.
 
+# Using facets to highlight subsets of Data
+```{r}
+ggplot(mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy)) +
+  facet_wrap(~class, nrow = 2)
+```
+
+#facet_wrap() is only used for discrete variables
+
+facet_grid() can be used when a combination of two variables have to be plotted.
+
+```{r}
+ggplot(mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy)) +
+  facet_grid(drv ~ cyl)
+```
+
+#Excercise: "nrow" and "ncol" refers to the number of rows and columns in the plot
+
+#Fitting Lines on Plots
+```{r}
+ggplot(mpg) + 
+  geom_smooth(mapping = aes(x = displ, y = hwy))
+```
+geom_smooth can be used to add smooth lines onto plots, instead 
+
+#we can also have the points on the plot along with the smooth line
+```{r}
+ggplot(mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy, colour = drv)) + 
+  geom_smooth(mapping = aes(x = displ, y = hwy))
+
+```
+
+#we can also have multiple lines on the plot to denote different "stuff"
+```{r}
+ggplot(mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy, colour = drv)) +
+  geom_smooth(mapping = aes(x = displ, y = hwy, colour = drv, linetype = drv))
+```
+
+#we can use the group aesthetic to group categorical variables
+```{r}
+ggplot(mpg) + 
+  geom_smooth(mapping = aes(x = displ, y = hwy, group = drv, color = drv),
+             show.legend = TRUE,
+             )
+```
 
