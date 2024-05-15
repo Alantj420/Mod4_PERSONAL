@@ -74,12 +74,6 @@ ggplot(mpg) +
 
 ```
 
-#we can also have multiple lines on the plot to denote different "stuff"
-```{r}
-ggplot(mpg) + 
-  geom_point(mapping = aes(x = displ, y = hwy, colour = drv)) +
-  geom_smooth(mapping = aes(x = displ, y = hwy, colour = drv, linetype = drv))
-```
 
 #we can use the group aesthetic to group categorical variables
 ```{r}
@@ -87,5 +81,75 @@ ggplot(mpg) +
   geom_smooth(mapping = aes(x = displ, y = hwy, group = drv, color = drv),
              show.legend = TRUE,
              )
+```
+
+#we can also have multiple lines on the plot to denote different "stuff"
+```{r}
+ggplot(mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy, colour = drv)) +
+  geom_smooth(mapping = aes(x = displ, y = hwy, colour = drv, linetype = drv))
+```
+
+# there is a better way to code the above plot in a more efficient way and one that prevents uneccesary mistakes:
+```{r}
+ggplot(mpg, mapping = aes(x = displ, y = hwy, colour = drv)) + 
+  geom_point(mapping = aes()) + 
+  geom_smooth()
+``` 
+using mapping under ggplot in the geom_ point and geom_smooth will allow us to make changes to the different layers.
+```{r}
+ggplot(mpg, mapping = aes(x = displ, y = hwy)) + 
+  geom_point(mapping = aes(colour = class)) +
+  geom_smooth(data = filter(mpg, class == "subcompact"), se = TRUE)
+```
+
+#Transformations and Stats:
+
+```{r}
+data("diamonds")
+```
+
+#Bar graph of Diamonds data
+```{r}
+ggplot(diamonds,) +
+  geom_bar(mapping = aes(x = cut))
+```
+
+We are going to change the count of diamonds which is an r calculated stat to identity, which is a raw value of the variable.
+```{r}
+demo <-  tribble(
+  ~cut, ~freq,
+  "Fair", 1610,
+  "Good", 4906,
+  "Very Good", 12082,
+  "Premium", 13791,
+  "Ideal", 21551
+)
+demo
+```
+```{r}
+ggplot(data = demo) + 
+  geom_bar(mapping = aes(x = cut, y = freq), stat = "identity")
+```
+
+```{r}
+ggplot(data = diamonds) +
+  geom_bar(mapping = aes(x = cut, y = after_stat(prop), group = 1))
+```
+
+#we can plot the statistical details for transparency
+```{r}
+ggplot(data = diamonds) +
+  stat_summary(
+    mapping = aes(x = cut, y = depth),
+    fun.min = min,
+    fun.max = max, 
+    fun = median
+  )
+```
+
+#aesthetics like colour and fill on geom_bar:
+```{r}
+
 ```
 
