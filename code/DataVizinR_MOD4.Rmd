@@ -228,6 +228,17 @@ best_in_class <- mpg %>%
 
 ggplot(mpg, aes(displ, hwy)) +
   geom_point(aes(colour = class)) +
-  geom_text(aes(label = model), data = best_in_class, position = position_nudge(x = 0.3, y = 0.5))
+  geom_text(aes(label = model), data = best_in_class)
+```
+we can use nudge()function to move your text around.
+
+We can tweak scales 
+```{r}
+ggplot(mpg, aes(displ, hwy)) +
+geom_point(aes(colour = class)) + 
+  scale_x_continuous(c(0,12)) +
+  scale_y_continuous() +
+  scale_colour_discrete()
+
 ```
 
