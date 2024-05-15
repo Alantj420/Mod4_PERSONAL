@@ -1,5 +1,5 @@
 ---
-title: "Mod4_Session 1"
+title: "Mod4_Workshop 1 and 2"
 author: "Alan Thomas Joshy"
 date: "2024-05-14"
 output: html_document
@@ -181,5 +181,53 @@ ggplot(data = diamonds, mapping = aes(x = cut, fill = clarity)) +
 ```{r}
 ggplot(data = diamonds) +
   geom_bar(mapping = aes(x = cut, fill = clarity), position = "jitter")
+```
+
+
+
+Communication using ggplot
+Labels
+```{r}
+ggplot2::ggplot(mpg, aes(displ, hwy)) +
+  geom_point(aes(colour = class)) +
+  geom_smooth(se = FALSE)
+  labs(title = "Fuel efficiency generally decreases with engine size")
+```
+other functions available for more text/details(eg. subtitles and captions)
+```{r}
+ggplot(mpg, aes(displ, hwy)) +
+  geom_point(aes(colour = class)) +
+  geom_smooth(se = FALSE) +
+  labs(title = "Fuel efficiency generally decreases with engine size",
+       subtitle = "Two seaters (sports cars) are an exception because of their light weight",
+       caption = "Data from fueleconomy.gov"
+       )
+```
+we can also add axis labels and legend titles:
+```{r}
+ggplot(mpg, aes(displ, hwy)) +
+  geom_point(aes(colour = class)) +
+  geom_smooth(se = FALSE) +
+  labs( 
+    x = "Engine displacement (L)",       #for x-axis
+    y = "Highway Fuel economy (mpg)",    #for y-axis
+    title = "Fuel efficiency generally decreases with engine size",
+       subtitle = "Two seaters (sports cars) are an exception because of their light weight",
+       caption = "Data from fueleconomy.gov",
+    colour = "Car type"                  #for legend title
+    )
+```
+
+Annotations:
+we can also add text onto the plot itself, maybe to highlight a single observation.
+```{r}
+#we filter the data first
+best_in_class <- mpg %>%
+  group_by(class) %>%
+  filter(row_number(desc(hwy)) == 1)
+
+ggplot(mpg, aes(displ, hwy)) +
+  geom_point(aes(colour = class)) +
+  geom_text(aes(label = model), data = best_in_class, position = position_nudge(x = 0.3, y = 0.5))
 ```
 
