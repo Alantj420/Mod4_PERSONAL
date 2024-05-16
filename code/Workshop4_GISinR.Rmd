@@ -8,3 +8,53 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+
+
+Load tidyverse into the library for the session
+```{r}
+library("tidyverse")
+```
+
+Install and load the new packages required
+```{r}
+#install.packages("sf")
+#install.packages("terra")
+#install.packages("tmap")
+
+#load into library
+library(sf) #simple features
+library(terra) #for raster
+library(tmap) #Thematic maps are geographical maps in which spatial data distributions are visualized
+
+```
+```{r}
+getwd()
+```
+
+
+We can load our copepod data using a package called readr, which is part of the tidyverse. readr > base R functions for data consistency
+```{r}
+#working directory default set to folder containing .rmd file, so when loading data specify to go back up a folder using "../"
+library(readr)
+dat <- read_csv("../data/data-for-course/copepods_raw.csv")
+dat
+```
+
+
+First we visualize the data to get an initial idea on it, and we'll use ggplot initially and tmap
+```{r}
+library(ggplot2)
+ggplot(dat) +
+  aes(x = longitude, y = latitude, colour = richness_raw) +
+  geom_point()
+```
+
+This is simply a nice and easy way to look at the data but it does not have critical characteristics needed for a map 
+
+Now we will visualize the richness data in a non-spatial way
+```{r}
+ggplot(dat, aes(x = latitude, y = richness_raw)) +
+  stat_smooth() +
+  geom_point()
+```
+
