@@ -66,3 +66,26 @@ df |>
   )
 ```
 
+```{r}
+cms_patient_experience |> 
+  distinct(measure_cd, measure_title)
+```
+
+
+```{r}
+cms_patient_experience |>
+  pivot_wider(
+    names_from = measure_cd,
+    values_from = prf_rate
+  )
+```
+
+
+```{r}
+cms_patient_experience |>
+  pivot_wider(
+    id_cols = starts_with("org"),
+    names_from = measure_cd,
+    values_from = prf_rate
+  )
+```
