@@ -239,6 +239,5 @@ geom_point(aes(colour = class)) +
   scale_x_continuous(c(0,12)) +
   scale_y_continuous() +
   scale_colour_discrete()
-
 ```
 
