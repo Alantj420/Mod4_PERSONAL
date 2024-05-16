@@ -8,3 +8,61 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+
+Initially load the package tidyverse
+```{r}
+library(tidyverse)
+```
+
+Trials at Piping (%>%) (|>):
+
+```{r}
+data <-  table1
+```
+
+
+actual piping:
+```{r}
+table1 |>
+  mutate(rate = cases / population * 10000)
+```
+
+this piping achieves the same result as the following code using '$' signs to denote variables from the dataset- table1 
+
+```{r}
+mutate(table1, rate = table1$cases / table1$population * 10000 )
+```
+Pivoting in order to tidy up data:
+pivot_longer used for decreasing number of columns and increase number of rows
+pivot_wider used for the opposite:
+```{r}
+billboard |>
+pivot_longer(
+  cols = !c(artist, track, date.entered),
+  names_to = "Week",
+  values_to = "Rank",
+  values_drop_na = TRUE
+  )
+```
+values_drop_na drops or ignores unknown values.
+
+
+```{r}
+df <- tribble(
+  ~id, ~bp1, ~bp2, ~bp3,
+  "A", 100, 120, 140,
+  "B", 140, 115, 150,
+  "C", 120, 125, 175
+)
+```
+
+
+```{r}
+df |> 
+  pivot_longer(
+    cols = c(bp1,bp2,bp3),
+    names_to = "measurement",
+    values_to = "value"
+  )
+```
+
