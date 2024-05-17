@@ -64,7 +64,7 @@ Now plot some different variables from the data
 dat
 ```
 ```{r}
-ggplot2 :: ggplot(dat, aes(x = region)) + #not really a good plot, doent give any info on data...
+ggplot2 :: ggplot(dat, aes(x = region)) + #not really a good plot, doent give any info on
   geom_bar()
 ```
 
