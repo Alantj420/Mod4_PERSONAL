@@ -58,3 +58,30 @@ ggplot(dat, aes(x = latitude, y = richness_raw)) +
   geom_point()
 ```
 
+Now plot some different variables from the data
+
+```{r}
+dat
+```
+```{r}
+ggplot2 :: ggplot(dat, aes(x = region)) + #not really a good plot, doent give any info on data...
+  geom_bar()
+```
+
+
+```{r}
+#calculate mean richness for region
+dat_sum <- dat |>
+  group_by(region) |>   #group by region
+  summarise(mean_richness = mean(richness_raw), #get mean richness
+  sd_richness = sd(richness_raw))  #calculate standard deviation 
+
+#plot the mean richness against region graph
+ggplot(dat_sum, aes(x = region, y = mean_richness)) +
+  geom_bar(stat = "identity") +
+  geom_errorbar(aes(ymin = mean_richness - sd_richness, ymax = mean_richness + sd_richness),width = 0.2) + 
+  labs(title = "Mean Richness by Region", x = "Regions", y = "Mean Species Richness")
+
+  
+```
+
