@@ -9,3 +9,32 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+Load necessary package for the session:
+```{r}
+library(tidyverse)
+library(readr)
+library(dplyr)
+```
+
+Load the data csv file
+```{r}
+dat <- read_csv("../data/Qfish data/export.csv")
+dat
+```
+
+
+
+Tidy this data:
+
+```{r}
+shark_data <- dat |>
+  pivot_longer(cols = -"Area", names_to = "Year", values_to = "count") |>
+  separate(Year, into = c("Year", "Type"), sep = " ", remove = FALSE) |>
+  filter(Type == "Shark") |>
+  select(-Type)
+```
+
+
+
+
+

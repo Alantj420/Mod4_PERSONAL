@@ -236,8 +236,10 @@ We can tweak scales
 ```{r}
 ggplot(mpg, aes(displ, hwy)) +
 geom_point(aes(colour = class)) + 
-  scale_x_continuous(c(0,12)) +
-  scale_y_continuous() +
-  scale_colour_discrete()
+  geom_text(aes(label = model), data = best_in_class)
+  scale_x_continuous(limits = c(0,9))
+  (scale_y_continuous() 
+  scale_colour_discrete())
 ```
+
 
