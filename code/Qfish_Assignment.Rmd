@@ -22,6 +22,7 @@ dat <- read_csv("../data/Qfish data/export.csv")
 dat
 ```
 
+<<<<<<< HEAD
 
 
 Tidy this data:
@@ -38,3 +39,5 @@ shark_data <- dat |>
 
 
 
+=======
+>>>>>>> bba6578b800ec64510bf68ae7f6d3bfd1cec74d0
