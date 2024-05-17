@@ -22,3 +22,25 @@ dat <- read_csv("../data/Qfish data/export.csv")
 dat
 ```
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+
+
+Tidy this data:
+
+```{r}
+shark_data <- dat |>
+  pivot_longer(cols = -"Area", names_to = "Year", values_to = "count") |>
+  separate(Year, into = c("Year", "Type"), sep = " ", remove = FALSE) |>
+  filter(Type == "Shark") |>
+  select(-Type)
+```
+
+
+
+
+
+=======
+>>>>>>> bba6578b800ec64510bf68ae7f6d3bfd1cec74d0
+>>>>>>> eedf561a4f6d2e8502c0a357ad4005b4639be5a1
