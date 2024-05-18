@@ -18,29 +18,32 @@ library(dplyr)
 
 Load the data csv file
 ```{r}
-dat <- read_csv("../data/Qfish data/export.csv")
+dat <- read_csv("../data/Qfish data/qfish_shark.csv", na = c("N/A",""))
 dat
 ```
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-
-
-Tidy this data:
+Now we have a tibble named "dat" which contains the data from 2001 to 2024 on the capture numbers of species of sharks demmed dangerous near popular Queensland beaches in order to reduce risk to humans. 
 
 ```{r}
-shark_data <- dat |>
-  pivot_longer(cols = -"Area", names_to = "Year", values_to = "count") |>
-  separate(Year, into = c("Year", "Type"), sep = " ", remove = FALSE) |>
-  filter(Type == "Shark") |>
-  select(-Type)
+#we named all the columns which were previously unnamed
+names(dat)[names(dat) == "...1"] <- "Region"
+names(dat)[names(dat) == "...4"] <- "col4"
+names(dat)[names(dat) == "...6"] <- "col6"
+names(dat)[names(dat) == "...28"] <- "col28"
+dat
+```
+
+```{r}
+#now we weill remove the columns name col4 col6 and col28
+
 ```
 
 
 
 
 
-=======
->>>>>>> bba6578b800ec64510bf68ae7f6d3bfd1cec74d0
->>>>>>> eedf561a4f6d2e8502c0a357ad4005b4639be5a1
+
+
+
+
+
