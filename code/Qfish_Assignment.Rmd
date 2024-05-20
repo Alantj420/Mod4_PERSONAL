@@ -34,15 +34,49 @@ dat
 ```
 
 ```{r}
-#now we weill remove the columns name col4 col6 and col28
-
+#now we we'll remove the columns named col4 col6 and col28
+neodata <- dat |> select(-col4, -col6 , -col28)
+neodata
 ```
 
 
+```{r}
+newdata <- neodata |>
+  pivot_longer(
+    cols = starts_with("20"),
+    names_to = "Year",
+    values_to = "Captures"
+  )
+```
+
+```{r}
+newdata
+```
+I have noticed something in the data which needs to be tidied before we can visualize the data in an efficient manner.
+the regions "Bribie Island" and "Sunshine Coast South", were before 2017 counted as one and the data from 2001 to 2016 is available for a region "Bribie Island and Sunshine Coast South". We will merge the data for "Bribie Island" and "Sunshine Coast South" from 2017 to 2024 to make visualization easier. The original data file will be available in the following link: https://qfish.fisheries.qld.gov.au/query/0989b62c-8803-41d6-82a3-152fb0c416b3/table?customise=False 
 
 
 
 
+
+
+
+
+
+
+Visualizing the data with ggplot:
+```{r}
+ggplot2::ggplot(data = newdata, aes(x = Year, y = Captures)) +
+  facet_wrap(~Region, nrow = 7) +
+  geom_line() +
+  labs(
+    title = "Shark capture by Region (2001-2024)",
+    x = "Year", y = "Number of Captures"
+  ) +
+  theme_bw() +
+  theme(legend.position = "bottom")
+
+```
 
 
 
