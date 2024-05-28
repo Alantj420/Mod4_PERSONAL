@@ -22,7 +22,7 @@ dat <- read_csv("../data/Qfish data/qfish_shark.csv", na = c("N/A",""))
 dat
 ```
 
-Now we have a tibble named "dat" which contains the data from 2001 to 2024 on the capture numbers of species of sharks demmed dangerous near popular Queensland beaches in order to reduce risk to humans. 
+Now we have a tibble named "dat" which contains the data from 2001 to 2024 on the capture numbers of species of sharks deemed dangerous near popular Queensland beaches in order to reduce risk to humans. 
 
 ```{r}
 #we named all the columns which were previously unnamed
@@ -60,11 +60,15 @@ I have noticed something in the data which needs to be tidied before we can visu
 the regions "Bribie Island" and "Sunshine Coast South", were before 2017 counted as one and the data from 2001 to 2016 is available for a region "Bribie Island and Sunshine Coast South". We will merge the data for "Bribie Island" and "Sunshine Coast South" from 2017 to 2024 to make visualization easier. The original data file will be available in the following link: https://qfish.fisheries.qld.gov.au/query/0989b62c-8803-41d6-82a3-152fb0c416b3/table?customise=False 
 
 
+trying to export the "newdata" tibble as an excel file to data wrangle a bit...
+
 ```{r}
-newdata |> dplyr::mutate()
+#install.packages("writexl")
+
+library(writexl)
+
+write_xlsx(newdata, "../data/Qfish data/newdata.xlsx")
 ```
-
-
 
 
 
