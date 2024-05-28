@@ -57,7 +57,7 @@ newdata
 ```
 
 I have noticed something in the data which needs to be tidied before we can visualize the data in an efficient manner.
-the regions "Bribie Island" and "Sunshine Coast South", were before 2017 counted as one and the data from 2001 to 2016 is available for a region "Bribie Island and Sunshine Coast South". We will merge the data for "Bribie Island" and "Sunshine Coast South" from 2017 to 2024 to make visualization easier. The original data file will be available in the following link: https://qfish.fisheries.qld.gov.au/query/0989b62c-8803-41d6-82a3-152fb0c416b3/table?customise=False 
+the regions "Bribie Island" and "Sunshine Coast South", before 2017 were counted as one and the data from 2001 to 2016 is available for a region "Sunshine Coast South and Bribie Island". We will merge the data for "Bribie Island" and "Sunshine Coast South" from 2017 to 2024, into "Sunshine Coast South and Bribie Island" to make visualization easier. The original data file will be available in the following link: https://qfish.fisheries.qld.gov.au/query/0989b62c-8803-41d6-82a3-152fb0c416b3/table?customise=False 
 
 
 trying to export the "newdata" tibble as an excel file to data wrangle a bit...
@@ -72,24 +72,30 @@ write_xlsx(newdata, "../data/Qfish data/newdata.xlsx")
 
 
 
+Loading the cleaned data
+```{r}
+
+library(readxl)
+
+final_dat <- read_xlsx("../data/Qfish data/newdata_combined.xlsx")
+
+final_dat
+```
+
 
 
 
 
 Visualizing the data with ggplot:
 ```{r}
-ggplot2::ggplot(data = newdata, aes(x = Year, y = Captures)) +
-  facet_wrap(~Region, nrow = 7) +
+ggplot2::ggplot(data = final_dat, aes(x = Year, y = Captures, colour = Region, group = Region)) +
   geom_line() +
-  labs(
-    title = "Shark capture by Region (2001-2024)",
-    x = "Year", y = "Number of Captures"
-  ) +
-  theme_bw() +
-  theme(legend.position = "bottom")
-
+  theme_minimal() +
+  labs(title = "Sharks Captures in each region from 2001 to 2024", x = "Year", Y = "Captures") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+  
 ```
 
-
+now we'll try making a graph without
 
 
