@@ -96,6 +96,30 @@ ggplot2::ggplot(data = final_dat, aes(x = Year, y = Captures, colour = Region, g
   
 ```
 
-now we'll try making a graph without
+now we'll try making a graph without the "Grand Total"
 
+```{r}
+fltrd_dta <- final_dat |> filter(Region != "Grand Total")
+
+#plot graph with fltrd_dta
+ggplot2::ggplot(data = fltrd_dta, aes(x = Year, y = Captures, colour = Region, group = Region)) +
+  geom_line() +
+  theme_minimal() +
+  labs(title = "Sharks Captures in each region from 2001 to 2024", x = "Year", Y = "Captures") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+```
+
+We will also make a graph showing just the "Grand Total"
+
+```{r}
+grand_total <- final_dat |> filter(Region == "Grand Total")
+
+#plot graph with grand_total
+ggplot2::ggplot(data = grand_total, aes(x = Year, y = Captures, colour = Region, group = Region)) +
+  geom_line() +
+  theme_minimal() +
+  labs(title = "Sharks Captures in each region from 2001 to 2024", x = "Year", Y = "Captures") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
 
