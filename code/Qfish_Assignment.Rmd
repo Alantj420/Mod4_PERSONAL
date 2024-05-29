@@ -2,7 +2,9 @@
 title: "QFISH Assignment"
 author: "Alan Thomas Joshy"
 date: "2024-05-17"
-output: html_document
+output:
+  pdf_document: default
+  html_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -13,8 +15,6 @@ knitr::opts_chunk$set(echo = TRUE)
 Load necessary package for the session:
 ```{r}
 library(tidyverse)
-library(readr)
-library(dplyr)
 ```
 
 Load the data csv file

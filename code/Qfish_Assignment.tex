@@ -1,0 +1,396 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={QFISH Assignment},
+  pdfauthor={Alan Thomas Joshy},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{QFISH Assignment}
+\author{Alan Thomas Joshy}
+\date{2024-05-17}
+
+\begin{document}
+\maketitle
+
+Load necessary package for the session:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(tidyverse)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## -- Attaching core tidyverse packages ------------------------ tidyverse 2.0.0 --
+## v dplyr     1.1.4     v readr     2.1.5
+## v forcats   1.0.0     v stringr   1.5.1
+## v ggplot2   3.5.1     v tibble    3.2.1
+## v lubridate 1.9.3     v tidyr     1.3.1
+## v purrr     1.0.2     
+## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()
+## i Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+\end{verbatim}
+
+Load the data csv file
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dat }\OtherTok{\textless{}{-}} \FunctionTok{read\_csv}\NormalTok{(}\StringTok{"../data/Qfish data/qfish\_shark.csv"}\NormalTok{, }\AttributeTok{na =} \FunctionTok{c}\NormalTok{(}\StringTok{"N/A"}\NormalTok{,}\StringTok{""}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## New names:
+## Rows: 14 Columns: 28
+## -- Column specification
+## -------------------------------------------------------- Delimiter: "," chr
+## (1): ...1 dbl (24): 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010,
+## 2011, ... lgl (3): ...4, ...6, ...28
+## i Use `spec()` to retrieve the full column specification for this data. i
+## Specify the column types or set `show_col_types = FALSE` to quiet this message.
+## * `` -> `...1`
+## * `` -> `...4`
+## * `` -> `...6`
+## * `` -> `...28`
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dat}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 14 x 28
+##    ...1      `2001` `2002` ...4  `2003` ...6  `2004` `2005` `2006` `2007` `2008`
+##    <chr>      <dbl>  <dbl> <lgl>  <dbl> <lgl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>
+##  1 Bribie I~     NA     NA NA        NA NA        NA     NA     NA     NA     NA
+##  2 Bundaberg     62     62 NA        50 NA        39     69     49     48     53
+##  3 Cairns        79     46 NA        66 NA        62     66     41     76     55
+##  4 Capricor~     87     91 NA        66 NA        80     84     68     81     69
+##  5 Gladstone     32     18 NA        30 NA        51     40     54     49     52
+##  6 Gold Coa~     85     73 NA        75 NA        75     78     38     35     34
+##  7 Mackay       134     94 NA        82 NA       108     75     59     68     73
+##  8 Nth Stra~     20     16 NA         8 NA         1      5     23     21     20
+##  9 Rainbow ~     35     31 NA        24 NA        26     39     67     49     49
+## 10 Sunshine~     76     91 NA        56 NA        39     53     52     39     50
+## 11 Sunshine~     NA     NA NA        NA NA        NA     NA     NA     NA     NA
+## 12 Sunshine~     35     40 NA        35 NA        24     21     36     16     31
+## 13 Townsvil~     89     59 NA        58 NA        76     90     92     73     99
+## 14 Grand To~    734    621 NA       550 NA       581    620    579    555    585
+## # i 17 more variables: `2009` <dbl>, `2010` <dbl>, `2011` <dbl>, `2012` <dbl>,
+## #   `2013` <dbl>, `2014` <dbl>, `2015` <dbl>, `2016` <dbl>, `2017` <dbl>,
+## #   `2018` <dbl>, `2019` <dbl>, `2020` <dbl>, `2021` <dbl>, `2022` <dbl>,
+## #   `2023` <dbl>, `2024` <dbl>, ...28 <lgl>
+\end{verbatim}
+
+Now we have a tibble named ``dat'' which contains the data from 2001 to
+2024 on the capture numbers of species of sharks deemed dangerous near
+popular Queensland beaches in order to reduce risk to humans.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#we named all the columns which were previously unnamed}
+\FunctionTok{names}\NormalTok{(dat)[}\FunctionTok{names}\NormalTok{(dat) }\SpecialCharTok{==} \StringTok{"...1"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"Region"}
+\FunctionTok{names}\NormalTok{(dat)[}\FunctionTok{names}\NormalTok{(dat) }\SpecialCharTok{==} \StringTok{"...4"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"col4"}
+\FunctionTok{names}\NormalTok{(dat)[}\FunctionTok{names}\NormalTok{(dat) }\SpecialCharTok{==} \StringTok{"...6"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"col6"}
+\FunctionTok{names}\NormalTok{(dat)[}\FunctionTok{names}\NormalTok{(dat) }\SpecialCharTok{==} \StringTok{"...28"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"col28"}
+\NormalTok{dat}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 14 x 28
+##    Region    `2001` `2002` col4  `2003` col6  `2004` `2005` `2006` `2007` `2008`
+##    <chr>      <dbl>  <dbl> <lgl>  <dbl> <lgl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>
+##  1 Bribie I~     NA     NA NA        NA NA        NA     NA     NA     NA     NA
+##  2 Bundaberg     62     62 NA        50 NA        39     69     49     48     53
+##  3 Cairns        79     46 NA        66 NA        62     66     41     76     55
+##  4 Capricor~     87     91 NA        66 NA        80     84     68     81     69
+##  5 Gladstone     32     18 NA        30 NA        51     40     54     49     52
+##  6 Gold Coa~     85     73 NA        75 NA        75     78     38     35     34
+##  7 Mackay       134     94 NA        82 NA       108     75     59     68     73
+##  8 Nth Stra~     20     16 NA         8 NA         1      5     23     21     20
+##  9 Rainbow ~     35     31 NA        24 NA        26     39     67     49     49
+## 10 Sunshine~     76     91 NA        56 NA        39     53     52     39     50
+## 11 Sunshine~     NA     NA NA        NA NA        NA     NA     NA     NA     NA
+## 12 Sunshine~     35     40 NA        35 NA        24     21     36     16     31
+## 13 Townsvil~     89     59 NA        58 NA        76     90     92     73     99
+## 14 Grand To~    734    621 NA       550 NA       581    620    579    555    585
+## # i 17 more variables: `2009` <dbl>, `2010` <dbl>, `2011` <dbl>, `2012` <dbl>,
+## #   `2013` <dbl>, `2014` <dbl>, `2015` <dbl>, `2016` <dbl>, `2017` <dbl>,
+## #   `2018` <dbl>, `2019` <dbl>, `2020` <dbl>, `2021` <dbl>, `2022` <dbl>,
+## #   `2023` <dbl>, `2024` <dbl>, col28 <lgl>
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#now we we\textquotesingle{}ll remove the columns named col4 col6 and col28}
+\NormalTok{neodata }\OtherTok{\textless{}{-}}\NormalTok{ dat }\SpecialCharTok{|\textgreater{}} \FunctionTok{select}\NormalTok{(}\SpecialCharTok{{-}}\NormalTok{col4, }\SpecialCharTok{{-}}\NormalTok{col6 , }\SpecialCharTok{{-}}\NormalTok{col28)}
+\NormalTok{neodata}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 14 x 25
+##    Region  `2001` `2002` `2003` `2004` `2005` `2006` `2007` `2008` `2009` `2010`
+##    <chr>    <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>
+##  1 Bribie~     NA     NA     NA     NA     NA     NA     NA     NA     NA     NA
+##  2 Bundab~     62     62     50     39     69     49     48     53     30     42
+##  3 Cairns      79     46     66     62     66     41     76     55     60     71
+##  4 Capric~     87     91     66     80     84     68     81     69     60     65
+##  5 Gladst~     32     18     30     51     40     54     49     52     63     57
+##  6 Gold C~     85     73     75     75     78     38     35     34     37     39
+##  7 Mackay     134     94     82    108     75     59     68     73     67     74
+##  8 Nth St~     20     16      8      1      5     23     21     20     26     24
+##  9 Rainbo~     35     31     24     26     39     67     49     49     59     51
+## 10 Sunshi~     76     91     56     39     53     52     39     50     50     37
+## 11 Sunshi~     NA     NA     NA     NA     NA     NA     NA     NA     NA     NA
+## 12 Sunshi~     35     40     35     24     21     36     16     31     19     22
+## 13 Townsv~     89     59     58     76     90     92     73     99    118    119
+## 14 Grand ~    734    621    550    581    620    579    555    585    589    601
+## # i 14 more variables: `2011` <dbl>, `2012` <dbl>, `2013` <dbl>, `2014` <dbl>,
+## #   `2015` <dbl>, `2016` <dbl>, `2017` <dbl>, `2018` <dbl>, `2019` <dbl>,
+## #   `2020` <dbl>, `2021` <dbl>, `2022` <dbl>, `2023` <dbl>, `2024` <dbl>
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{newdata }\OtherTok{\textless{}{-}}\NormalTok{ neodata }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{pivot\_longer}\NormalTok{(}
+    \AttributeTok{cols =} \FunctionTok{starts\_with}\NormalTok{(}\StringTok{"20"}\NormalTok{),}
+    \AttributeTok{names\_to =} \StringTok{"Year"}\NormalTok{,}
+    \AttributeTok{values\_to =} \StringTok{"Captures"}
+\NormalTok{  )}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{newdata}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 336 x 3
+##    Region        Year  Captures
+##    <chr>         <chr>    <dbl>
+##  1 Bribie Island 2001        NA
+##  2 Bribie Island 2002        NA
+##  3 Bribie Island 2003        NA
+##  4 Bribie Island 2004        NA
+##  5 Bribie Island 2005        NA
+##  6 Bribie Island 2006        NA
+##  7 Bribie Island 2007        NA
+##  8 Bribie Island 2008        NA
+##  9 Bribie Island 2009        NA
+## 10 Bribie Island 2010        NA
+## # i 326 more rows
+\end{verbatim}
+
+I have noticed something in the data which needs to be tidied before we
+can visualize the data in an efficient manner. the regions ``Bribie
+Island'' and ``Sunshine Coast South'', before 2017 were counted as one
+and the data from 2001 to 2016 is available for a region ``Sunshine
+Coast South and Bribie Island''. We will merge the data for ``Bribie
+Island'' and ``Sunshine Coast South'' from 2017 to 2024, into ``Sunshine
+Coast South and Bribie Island'' to make visualization easier. The
+original data file will be available in the following link:
+\url{https://qfish.fisheries.qld.gov.au/query/0989b62c-8803-41d6-82a3-152fb0c416b3/table?customise=False}
+
+trying to export the ``newdata'' tibble as an excel file to data wrangle
+a bit\ldots{}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#install.packages("writexl")}
+
+\FunctionTok{library}\NormalTok{(writexl)}
+
+\FunctionTok{write\_xlsx}\NormalTok{(newdata, }\StringTok{"../data/Qfish data/newdata.xlsx"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Loading the cleaned data
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(readxl)}
+
+\NormalTok{final\_dat }\OtherTok{\textless{}{-}} \FunctionTok{read\_xlsx}\NormalTok{(}\StringTok{"../data/Qfish data/newdata\_combined.xlsx"}\NormalTok{)}
+
+\NormalTok{final\_dat}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 288 x 3
+##    Region    Year  Captures
+##    <chr>     <chr>    <dbl>
+##  1 Bundaberg 2001        62
+##  2 Bundaberg 2002        62
+##  3 Bundaberg 2003        50
+##  4 Bundaberg 2004        39
+##  5 Bundaberg 2005        69
+##  6 Bundaberg 2006        49
+##  7 Bundaberg 2007        48
+##  8 Bundaberg 2008        53
+##  9 Bundaberg 2009        30
+## 10 Bundaberg 2010        42
+## # i 278 more rows
+\end{verbatim}
+
+Visualizing the data with ggplot:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{plt }\OtherTok{\textless{}{-}}\NormalTok{ ggplot2}\SpecialCharTok{::}\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ final\_dat, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Year, }\AttributeTok{y =}\NormalTok{ Captures, }\AttributeTok{colour =}\NormalTok{ Region, }\AttributeTok{group =}\NormalTok{ Region)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_line}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{theme\_minimal}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Sharks Captures in each region from 2001 to 2024"}\NormalTok{, }\AttributeTok{x =} \StringTok{"Year"}\NormalTok{, }\AttributeTok{Y =} \StringTok{"Captures"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{axis.text.x =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{angle =} \DecValTok{45}\NormalTok{, }\AttributeTok{hjust =} \DecValTok{1}\NormalTok{))}
+ 
+\NormalTok{plt}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Qfish_Assignment_files/figure-latex/unnamed-chunk-9-1.pdf}
+
+now we'll try making a graph without the ``Grand Total''
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fltrd\_dta }\OtherTok{\textless{}{-}}\NormalTok{ final\_dat }\SpecialCharTok{|\textgreater{}} \FunctionTok{filter}\NormalTok{(Region }\SpecialCharTok{!=} \StringTok{"Grand Total"}\NormalTok{)}
+
+\CommentTok{\#plot graph with fltrd\_dta}
+\NormalTok{ggplot2}\SpecialCharTok{::}\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ fltrd\_dta, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Year, }\AttributeTok{y =}\NormalTok{ Captures, }\AttributeTok{colour =}\NormalTok{ Region, }\AttributeTok{group =}\NormalTok{ Region)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_line}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{theme\_minimal}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Sharks Captures in each region from 2001 to 2024"}\NormalTok{, }\AttributeTok{x =} \StringTok{"Year"}\NormalTok{, }\AttributeTok{Y =} \StringTok{"Captures"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{axis.text.x =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{angle =} \DecValTok{45}\NormalTok{, }\AttributeTok{hjust =} \DecValTok{1}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Qfish_Assignment_files/figure-latex/unnamed-chunk-10-1.pdf}
+
+We will also make a graph showing just the ``Grand Total''
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{grand\_total }\OtherTok{\textless{}{-}}\NormalTok{ final\_dat }\SpecialCharTok{|\textgreater{}} \FunctionTok{filter}\NormalTok{(Region }\SpecialCharTok{==} \StringTok{"Grand Total"}\NormalTok{)}
+
+\CommentTok{\#plot graph with grand\_total}
+\NormalTok{ggplot2}\SpecialCharTok{::}\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ grand\_total, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Year, }\AttributeTok{y =}\NormalTok{ Captures, }\AttributeTok{colour =}\NormalTok{ Region, }\AttributeTok{group =}\NormalTok{ Region)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_line}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{theme\_minimal}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Sharks Captures in each region from 2001 to 2024"}\NormalTok{, }\AttributeTok{x =} \StringTok{"Year"}\NormalTok{, }\AttributeTok{Y =} \StringTok{"Captures"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{axis.text.x =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{angle =} \DecValTok{45}\NormalTok{, }\AttributeTok{hjust =} \DecValTok{1}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Qfish_Assignment_files/figure-latex/unnamed-chunk-11-1.pdf}
+
+\end{document}
