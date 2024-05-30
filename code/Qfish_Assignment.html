@@ -13,7 +13,7 @@
 
 <meta name="date" content="2024-05-17" />
 
-<title>QFISH Assignment</title>
+<title>MB5370_Module4 Assignment: Data Wrangling and Vizualization in R</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -350,14 +350,19 @@ display: none;
 
 
 
-<h1 class="title toc-ignore">QFISH Assignment</h1>
+<h1 class="title toc-ignore">MB5370_Module4 Assignment: Data Wrangling
+and Vizualization in R</h1>
 <h4 class="author">Alan Thomas Joshy</h4>
 <h4 class="date">2024-05-17</h4>
 
 </div>
 
 
-<p>Load necessary package for the session:</p>
+<p>We will start by loading the necessary packages we think might be
+required for our data wrangling and analysis/visualization. In this case
+we shall start by loading “tidyverse”, which is a collection of useful R
+packages such as ‘ggplot2’, ‘tidyr’, ‘readr’, ‘tibble’, ‘dplyr’ among
+others.</p>
 <pre class="r"><code>library(tidyverse)</code></pre>
 <pre><code>## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
 ## ✔ dplyr     1.1.4     ✔ readr     2.1.5
@@ -566,13 +571,14 @@ com_data</code></pre>
 ## 10 North QLD 2010       264
 ## # ℹ 62 more rows</code></pre>
 <p>Please note that the division of North, Central and South Qld is only
-based on personal choices and do not follow any recognized distinctions
-existing in the state of Qld. In this case the Region of North QLD
-comprises the sum of data for the regions Cairns, Townsville and Mackay,
-Central QLD comprises the sum of data for the regions Capricorn Coast,
-Gladstone, Bundaberg and Rainbow Beach, and South QLD comprises the sum
-of data for the regions Sunshine Coast and Bribie Isl.,Gold Coast and
-North Stradbroke Isl.</p>
+based on personal choices(into groups of 3 or 4 based on their
+geographical position away from the Equator) and do not follow any
+recognized distinctions existing in the state of Qld. In this case the
+Region of North QLD comprises the sum of data for the regions Cairns,
+Townsville and Mackay, Central QLD comprises the sum of data for the
+regions Capricorn Coast, Gladstone, Bundaberg and Rainbow Beach, and
+South QLD comprises the sum of data for the regions Sunshine Coast and
+Bribie Isl.,Gold Coast and North Stradbroke Isl.</p>
 <pre class="r"><code>#plot the Graph
 ggplot2::ggplot(data = com_data, aes(x = Year, y = Captures, colour = Region, group = Region)) +
   geom_line() +

@@ -1,5 +1,5 @@
 ---
-title: "QFISH Assignment"
+title: "MB5370_Module4 Assignment: Data Wrangling and Vizualization in R"
 author: "Alan Thomas Joshy"
 date: "2024-05-17"
 output:
@@ -11,18 +11,24 @@ knitr::opts_knit$set(root.dir = "../output/")
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-Load necessary package for the session:
+We will start by loading the necessary packages we think might be required for our data wrangling and analysis/visualization. In this case we shall start by loading "tidyverse", which is a collection of useful R packages such as 'ggplot2', 'tidyr', 'readr', 'tibble', 'dplyr' among others. 
+
 ```{r}
 library(tidyverse)
 ```
 
-Load the data csv file
+Now we will load the CSV file containing the data which we want to visualize in a graph. In this case the data was obtained from the Queensland fisheries or QFISH website, which provides information on Queensland fisheries resources and spatial data sets (layers) using interactive tools, which we can view and download. 
+The Department of Agriculture and Fisheries (DAF) is responsible for managing the Queensland Shark Control Program, which aims to reduce the chance of shark attacks on humans by removing large and potentially dangerous sharks from popular beaches along the Queensland Coastline.
+The data for the capture numbers by this program is available in the Qfish website (https://qfish.fisheries.qld.gov.au/query/number-caught-by-area-calendar-year-and-species-group/table) and we will be using the data for shark captures (no species distinction) in the respective regions from the years 2001 to 2024.
+The data from the website is downloaded as a .csv file, which we will load in using the following line of code and name it "dat": 
+
 ```{r}
 dat <- read_csv("../data/Qfish data/qfish_shark.csv", na = c("N/A",""))
 dat
 ```
 
-Now we have a tibble named "dat" which contains the data from 2001 to 2024 on the capture numbers of species of sharks deemed dangerous near popular Queensland beaches in order to reduce risk to humans. 
+Now we have a tibble named "dat" which contains the data from 2001 to 2024 on the capture numbers of species of sharks deemed dangerous near popular Queensland beaches. We will need to do some data wrangling before we are able to visualize any of this data.
+The first thing we notice is that some columns do not have names and so r has assigned some numerical values to them. We have to rename these columns for ease of handling. 
 
 ```{r}
 #we named all the columns which were previously unnamed
@@ -33,15 +39,15 @@ names(dat)[names(dat) == "...28"] <- "col28"
 dat
 ```
 
+Now that all the columns have a name, we have to remove the empty columns. We name this new 'data frame' as "neodata".
+
 ```{r}
 #now we we'll remove the columns named col4 col6 and col28
 neodata <- dat |> select(-col4, -col6 , -col28)
 neodata
 ```
 
-
-
-
+The next step is to change our data into 'long' format which R can easily visualize.
 
 ```{r}
 newdata <- neodata |>
@@ -50,17 +56,15 @@ newdata <- neodata |>
     names_to = "Year",
     values_to = "Captures"
   )
-```
 
-```{r}
 newdata
 ```
 
 I have noticed something in the data which needs to be tidied before we can visualize the data in an efficient manner.
-the regions "Bribie Island" and "Sunshine Coast South", before 2017 were counted as one and the data from 2001 to 2016 is available for a region "Sunshine Coast South and Bribie Island". We will merge the data for "Bribie Island" and "Sunshine Coast South" from 2017 to 2024, into "Sunshine Coast South and Bribie Island" to make visualization easier. The original data file will be available in the following link: https://qfish.fisheries.qld.gov.au/query/0989b62c-8803-41d6-82a3-152fb0c416b3/table?customise=False 
+The data collected from the regions "Bribie Island" and "Sunshine Coast South", before 2017 were recorded under one region and the data from 2017 to 2024 is available for the 2 distinct regions "Sunshine Coast South and Bribie Island". We will merge the data for "Bribie Island" and "Sunshine Coast South" from 2017 to 2024, into "Sunshine Coast South and Bribie Island" to make visualization easier. 
 
 
-trying to export the "newdata" tibble as an excel file to data wrangle a bit...
+We will export the "newdata" tibble as an excel file to make wrangling it easier.
 
 ```{r}
 #install.packages("writexl")
@@ -70,9 +74,9 @@ library(writexl)
 write_xlsx(newdata, "../data/Qfish data/newdata.xlsx")
 ```
 
+In Microsoft Excel, I modified the data set by recording the sum of values for each year from 2017 to 2024 for "Bribie Island" and "Sunshine Coast South" for the region "Sunshine Coast South and Bribie Island", and deleting the separate columns of "Bribie Island" and "Sunshine Coast South".
+We then load the new data which was saved as an excel file named "newdata_combined.xlsx"
 
-
-Loading the cleaned data
 ```{r}
 
 library(readxl)
@@ -82,11 +86,9 @@ final_dat <- read_xlsx("../data/Qfish data/newdata_combined.xlsx")
 final_dat
 ```
 
-
-
-
-
+We can now start visualizing this data set as it is in a format which makes data visualization very easy.
 Visualizing the data with ggplot:
+
 ```{r}
 plt <- ggplot2::ggplot(data = final_dat, aes(x = Year, y = Captures, colour = Region, group = Region)) +
   geom_line() +
@@ -97,7 +99,7 @@ plt <- ggplot2::ggplot(data = final_dat, aes(x = Year, y = Captures, colour = Re
 plt
 ```
 
-now we'll try making a graph without the "Grand Total"
+This is a good start if I say so myself ;), but let try to make a plot without including the line for "Grand Total".
 
 ```{r}
 fltrd_dta <- final_dat |> filter(Region != "Grand Total")
@@ -111,7 +113,7 @@ ggplot2::ggplot(data = fltrd_dta, aes(x = Year, y = Captures, colour = Region, g
 
 ```
 
-We will also make a graph showing just the "Grand Total"
+We will also make a graph showing just the "Grand Total".
 
 ```{r}
 grand_total <- final_dat |> filter(Region == "Grand Total")
@@ -124,15 +126,14 @@ ggplot2::ggplot(data = grand_total, aes(x = Year, y = Captures, colour = Region,
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
 
-
  The graph is still 'messy" looking due to the numerous lines corresponding to the different regions.
- I have decided to tidy up the visual aspect of the plot by logically grouping together some regions according to proximity.
-
+ I have decided to tidy up the visual aspect of the plot by 'logically' grouping together some regions by proximity. I did this by exporting our "final_dat" data frame as an Excel file and modifying the excel file.
+ 
 ```{r}
 #write_xlsx(final_dat, "../data/Qfish data/final_dat.xlsx")
 ```
 
-
+The modified Excel file was saved as "NCS_regions.xlsx" and was loaded in as "com_data"
 
 ```{r}
 com_data <- read_xlsx("../data/Qfish data/NCS_regions.xlsx", sheet = "NCS_regions")
@@ -140,8 +141,7 @@ com_data <- read_xlsx("../data/Qfish data/NCS_regions.xlsx", sheet = "NCS_region
 com_data
 ```
 
-
-Please note that the division of North, Central and South Qld is only based on personal choices and do not follow any recognized distinctions existing in the state of Qld. In this case the Region of North QLD comprises the sum of data for the regions Cairns, Townsville and Mackay, Central QLD comprises the sum of data for the regions Capricorn Coast, Gladstone, Bundaberg and Rainbow Beach, and South QLD comprises the sum of data for the regions Sunshine Coast and Bribie Isl.,Gold Coast and North Stradbroke Isl.
+Please note that the division of North, Central and South Qld is only based on personal choices(into groups of 3 or 4 based on their geographical position away from the Equator) and do not follow any recognized distinctions existing in the state of Qld. In this case the Region of North QLD comprises the sum of data for the regions Cairns, Townsville and Mackay, Central QLD comprises the sum of data for the regions Capricorn Coast, Gladstone, Bundaberg and Rainbow Beach, and South QLD comprises the sum of data for the regions Sunshine Coast and Bribie Isl.,Gold Coast and North Stradbroke Isl.
 
 ```{r}
 #plot the Graph
