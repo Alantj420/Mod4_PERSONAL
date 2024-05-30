@@ -3,7 +3,6 @@ title: "QFISH Assignment"
 author: "Alan Thomas Joshy"
 date: "2024-05-17"
 output:
-  pdf_document: default
   html_document: default
 ---
 
