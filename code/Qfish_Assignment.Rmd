@@ -71,7 +71,7 @@ We will export the "newdata" tibble as an excel file to make wrangling it easier
 
 library(writexl)
 
-write_xlsx(newdata, "../data/Qfish data/newdata.xlsx")
+#write_xlsx(newdata, "../data/Qfish data/newdata.xlsx")
 ```
 
 In Microsoft Excel, I modified the data set by recording the sum of values for each year from 2017 to 2024 for "Bribie Island" and "Sunshine Coast South" for the region "Sunshine Coast South and Bribie Island", and deleting the separate columns of "Bribie Island" and "Sunshine Coast South".
@@ -99,11 +99,7 @@ plt <- ggplot2::ggplot(data = final_dat, aes(x = Year, y = Captures, colour = Re
 plt
 ```
 
-<<<<<<< HEAD
 This is a good start if I say so myself ;), but let's try to make a plot without including the line for "Grand Total".
-=======
-This is a good start if I say so myself ;), but let try to make a plot without including the line for "Grand Total".
->>>>>>> f0f86f6994230ed2aeaf530e9f6b552e72feace5
 
 ```{r}
 fltrd_dta <- final_dat |> filter(Region != "Grand Total")
