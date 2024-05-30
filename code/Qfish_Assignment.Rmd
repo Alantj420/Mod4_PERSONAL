@@ -99,7 +99,11 @@ plt <- ggplot2::ggplot(data = final_dat, aes(x = Year, y = Captures, colour = Re
 plt
 ```
 
+<<<<<<< HEAD
 This is a good start if I say so myself ;), but let's try to make a plot without including the line for "Grand Total".
+=======
+This is a good start if I say so myself ;), but let try to make a plot without including the line for "Grand Total".
+>>>>>>> f0f86f6994230ed2aeaf530e9f6b552e72feace5
 
 ```{r}
 fltrd_dta <- final_dat |> filter(Region != "Grand Total")
