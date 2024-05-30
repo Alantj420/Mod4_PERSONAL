@@ -125,7 +125,32 @@ ggplot2::ggplot(data = grand_total, aes(x = Year, y = Captures, colour = Region,
 ```
 
 
+ The graph is still 'messy" looking due to the numerous lines corresponding to the different regions.
+ I have decided to tidy up the visual aspect of the plot by logically grouping together some regions according to proximity.
 
+```{r}
+#write_xlsx(final_dat, "../data/Qfish data/final_dat.xlsx")
+```
+
+
+
+```{r}
+com_data <- read_xlsx("../data/Qfish data/NCS_regions.xlsx", sheet = "NCS_regions")
+
+com_data
+```
+
+
+Please note that the division of North, Central and South Qld is only based on personal choices and do not follow any recognized distinctions existing in the state of Qld. In this case the Region of North QLD comprises the sum of data for the regions Cairns, Townsville and Mackay, Central QLD comprises the sum of data for the regions Capricorn Coast, Gladstone, Bundaberg and Rainbow Beach, and South QLD comprises the sum of data for the regions Sunshine Coast and Bribie Isl.,Gold Coast and North Stradbroke Isl.
+
+```{r}
+#plot the Graph
+ggplot2::ggplot(data = com_data, aes(x = Year, y = Captures, colour = Region, group = Region)) +
+  geom_line() +
+  theme_light() +
+  labs(title = "Sharks Captures in each region from 2001 to 2024", x = "Year", Y = "Captures") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
 
 
 
