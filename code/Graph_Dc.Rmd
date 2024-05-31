@@ -1,5 +1,5 @@
 ---
-title: "Graph_DC"
+title: "Plot Deconstruction and Visualization Project"
 author: "Alan Thomas Joshy & Prabhanjan Ambhorkar"
 date: "2024-05-30"
 output: html_document
@@ -11,9 +11,9 @@ knitr::opts_chunk$set(echo = TRUE)
 
 
 Load all packages necessary
+
 ```{r}
-library(dplyr)
-library(ggplot2)
+library(tidyverse)
 ```
 
 We load the data into the rmd file:
@@ -23,32 +23,36 @@ library(readr)
 
 
 Bull_data <- read_csv("../data/Plot_Deco/Bull_shark_data.csv")
-View(Bull_data)
+#View(Bull_data)
 
-hammerhead_data <- read_csv("../data/Plot_Deco/hammerhead_data.csv")
-View(hammerhead_data)
+Hammerhead_data <- read_csv("../data/Plot_Deco/hammerhead_data.csv")
+#View(hammerhead_data)
 
 Tiger_data <- read_csv("../data/Plot_Deco/Tiger_shark_data.csv")
-View(Tiger_data)
+#View(Tiger_data)
+
+Blacktip_data <- read_csv("../data/Plot_Deco/Black_tip_data.csv")
+#View(Blacktip_data)
 ```
-we now need to combine the data for the different species into one data frame and so we will add a column called species to distinguish the data for the different shark species.
+We now need to combine the data for the different species into one data frame and so we will add a column called species to distinguish the data for the different shark species.
 
 ```{r}
 Bull_data <- Bull_data |> mutate(Species = "Bull Shark")
 
-hammerhead_data <- hammerhead_data |> mutate(Species = "Hammerhead Shark")
+Hammerhead_data <- Hammerhead_data |> mutate(Species = "Hammerhead Shark")
 
-Tiger_data <- Tiger_data|> mutate(Species = "Tiger Shark")
+Tiger_data <- Tiger_data |> mutate(Species = "Tiger Shark")
 
+Blacktip_data <- Blacktip_data |> mutate(Species = "Blacktip Shark")
 
 #Combine data frames:
-Com_dta <- bind_rows(Bull_data, hammerhead_data, Tiger_data)
+Com_dta <- bind_rows(Bull_data, Blacktip_data, Hammerhead_data, Tiger_data)
 Com_dta
 ```
 
 
 
-TO make a plot
+To make a plot:
 
 ```{r}
 plt <- ggplot2::ggplot(data = Com_dta, aes(x = Year, y = No., colour = Species, group = Species)) +
