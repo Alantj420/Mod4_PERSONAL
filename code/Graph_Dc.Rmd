@@ -1,6 +1,6 @@
 ---
 title: "Graph_DC"
-author: "Alan Thomas Joshy"
+author: "Alan Thomas Joshy & Prabhanjan Ambhorkar"
 date: "2024-05-30"
 output: html_document
 ---
@@ -53,7 +53,7 @@ TO make a plot
 ```{r}
 plt <- ggplot2::ggplot(data = Com_dta, aes(x = Year, y = No., colour = Species, group = Species)) +
   geom_line() +
-  theme_light() +
+  theme_classic() +
   labs(title = "Capture numbers by the Queensland Shark Capture Program from 1997 to 2013", x = "Year", y = "No. of Sharks captured") +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
