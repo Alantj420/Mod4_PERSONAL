@@ -350,12 +350,8 @@ display: none;
 
 
 
-<<<<<<< HEAD
 <h1 class="title toc-ignore">Plot Deconstruction and Visualization
 Project</h1>
-=======
-<h1 class="title toc-ignore">Graph_DC</h1>
->>>>>>> 9ac36cddb9d4c2c1458df31acaa18bdb79bc477a
 <h4 class="author">Alan Thomas Joshy &amp; Prabhanjan Ambhorkar</h4>
 <h4 class="date">2024-05-30</h4>
 
@@ -417,11 +413,7 @@ Blacktip_data &lt;- read_csv(&quot;../data/Plot_Deco/Black_tip_data.csv&quot;)</
 ## ℹ Use `spec()` to retrieve the full column specification for this data.
 ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 <pre class="r"><code>#View(Blacktip_data)</code></pre>
-<<<<<<< HEAD
 <p>We now need to combine the data for the different species into one
-=======
-<p>we now need to combine the data for the different species into one
->>>>>>> 9ac36cddb9d4c2c1458df31acaa18bdb79bc477a
 data frame and so we will add a column called species to distinguish the
 data for the different shark species.</p>
 <pre class="r"><code>Bull_data &lt;- Bull_data |&gt; mutate(Species = &quot;Bull Shark&quot;)
@@ -449,11 +441,7 @@ Com_dta</code></pre>
 ##  9  2005    44 Bull Shark
 ## 10  2006    83 Bull Shark
 ## # ℹ 58 more rows</code></pre>
-<<<<<<< HEAD
 <p>To make a plot:</p>
-=======
-<p>TO make a plot</p>
->>>>>>> 9ac36cddb9d4c2c1458df31acaa18bdb79bc477a
 <pre class="r"><code>plt &lt;- ggplot2::ggplot(data = Com_dta, aes(x = Year, y = No., colour = Species, group = Species)) +
   geom_line() +
   theme_classic() +
